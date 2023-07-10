@@ -1,55 +1,67 @@
-public:
-class MinStack
+#include <bits/stdc++.h>
+using namespace std;
+
+class node
 {
-
-    class Node
+public:
+    node *prev;
+    int data{};
+    node *next;
+    node(int da)
     {
-        int value;
-        int min;
-        Node next;
-    public
-        Node(int value, int min)
-        {
-            this.value = value;
-            this.min = min;
-            next = null;
-            Node head;
-        public
-            void push(int x)
-            {
-                MinStack.Node head;
-                if (head == null)
-                {
-                    Node n = new Node(x, x);
-                    head = n;
-                }
-                else
-                {
-        Node n = new Node(x, Math.min(x))
-		n.next = head;
-		head = n;
-                }
-            }
+        data = da;
+        prev = NULL;
+        next = NULL;
+    }
+};
 
-        public
-            int top()
+class Doubly_linked_list
+{
+    node *head = NULL;
+
+public:
+    // constructor
+    Doubly_linked_list()
+    {
+        int data{};
+        cin >> data;
+        node *temp = NULL;
+
+        while (data != -1)
+        {
+            node *newNode = new node(data);
+            if (head == NULL)
             {
-                Object head;
-                if (head != null)
-        return head.value;
-                return -1;
+                head = newNode;
+                temp = newNode;
             }
-        public
-            int getMin()
+            else
             {
-                if (head != null)
-        return head.min;
-                return -1;
-            public
-                void main(String[] args)
-                {
-                }
+                temp->next = newNode;
+                newNode->prev = temp;
+                temp = temp->next;
             }
+            cin >> data;
         }
     }
+    // FUNCTION
+    void display();
+};
+
+void Doubly_linked_list::display()
+{
+    node *temp = head;
+    while (temp != NULL)
+    {
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+    cout << endl;
+}
+
+int main()
+{
+    Doubly_linked_list d1;
+    d1.display();
+    return 0;
 }
